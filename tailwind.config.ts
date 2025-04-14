@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -135,6 +136,16 @@ export default {
 					'50%': {
 						'box-shadow': '0 0 25px 5px rgba(139, 92, 246, 0.7)'
 					}
+				},
+				'exit': {
+					'0%': {
+						opacity: '1',
+						transform: 'translateY(0)'
+					},
+					'100%': {
+						opacity: '0',
+						transform: 'translateY(10px)'
+					}
 				}
 			},
 			animation: {
@@ -144,6 +155,7 @@ export default {
 				'fade-out': 'fade-out 0.5s ease-out',
 				'scale-in': 'scale-in 0.3s ease-out',
 				'glow': 'glow 2s ease-in-out infinite',
+				'exit': 'exit 0.3s ease-out'
 			},
 			backgroundImage: {
 				'neon-gradient-1': 'linear-gradient(to right, #9b87f5, #1EAEDB)',

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -142,6 +143,22 @@
     background: linear-gradient(90deg, theme('colors.neon.pink'), theme('colors.neon.cyan'));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+  }
+
+  /* Exit animation classes */
+  .exit {
+    animation: exit 0.3s ease-out forwards;
+  }
+  
+  @keyframes exit {
+    0% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(10px);
+    }
   }
 }
 
