@@ -1,13 +1,46 @@
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
-import { Search, Home, MoveDown, Users, MessageSquare, Filter } from "lucide-react";
+import { Search, Home, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "lucide-react";
+import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 
 const Landing = () => {
   const [searchQuery, setSearchQuery] = useState("");
+
+  // Add testimonial data
+  const testimonials = [
+    {
+      name: "Alex Johnson",
+      location: "New York",
+      rating: 5,
+      text: "I found my perfect roommate within a week! The compatibility matching was spot-on and we've been living together for 6 months now without any issues.",
+      image: "https://randomuser.me/api/portraits/men/32.jpg"
+    },
+    {
+      name: "Sarah Williams",
+      location: "Los Angeles",
+      rating: 5,
+      text: "After struggling with bad roommates for years, FindMyRoomie helped me connect with someone who shares my lifestyle and values. Best decision ever!",
+      image: "https://randomuser.me/api/portraits/women/44.jpg"
+    },
+    {
+      name: "Michael Chen",
+      location: "Chicago",
+      rating: 4,
+      text: "The detailed profiles helped me find someone who matched my schedule and habits perfectly. The process was smooth and stress-free.",
+      image: "https://randomuser.me/api/portraits/men/67.jpg"
+    },
+    {
+      name: "Priya Patel",
+      location: "Austin",
+      rating: 5,
+      text: "I was new to the city and needed a roommate fast. Within days I found someone compatible and we're now great friends!",
+      image: "https://randomuser.me/api/portraits/women/63.jpg"
+    }
+  ];
 
   return (
     <div className="min-h-screen">
@@ -44,7 +77,7 @@ const Landing = () => {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in" style={{ animationDelay: "0.6s" }}>
               <Link to="/browse">
-                <button className="neon-button w-full sm:w-auto">
+                <button className="neon-button w-full sm:w-auto shine-effect">
                   Find Roommates
                 </button>
               </Link>
@@ -110,8 +143,61 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* Statistics Section */}
+      {/* Testimonials Section */}
       <section className="py-20">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 animate-on-scroll">
+            Success <span className="neon-text">Stories</span>
+          </h2>
+          <p className="text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto animate-on-scroll">
+            Hear from people who found their perfect roommates using our platform
+          </p>
+          
+          <Carousel className="mx-auto max-w-5xl">
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
+                  <GlassmorphismCard className="h-full">
+                    <div className="flex flex-col h-full">
+                      <div className="flex items-center mb-4">
+                        <img 
+                          src={testimonial.image} 
+                          alt={testimonial.name} 
+                          className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-neon-purple"
+                        />
+                        <div>
+                          <h3 className="font-medium">{testimonial.name}</h3>
+                          <p className="text-white/60 text-sm">{testimonial.location}</p>
+                        </div>
+                      </div>
+                      <div className="mb-2 flex">
+                        {[...Array(5)].map((_, i) => (
+                          <Star 
+                            key={i} 
+                            className={`h-4 w-4 ${i < testimonial.rating ? 'text-neon-purple' : 'text-white/20'}`} 
+                            fill={i < testimonial.rating ? '#9b87f5' : 'none'} 
+                          />
+                        ))}
+                      </div>
+                      <div className="flex-grow flex items-start mb-4">
+                        <Quote className="h-6 w-6 text-neon-purple/50 mr-2 flex-shrink-0 mt-1" />
+                        <p className="text-white/80 italic">{testimonial.text}</p>
+                      </div>
+                    </div>
+                  </GlassmorphismCard>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <div className="flex justify-center gap-2 mt-4">
+              <CarouselPrevious className="relative inset-0 translate-y-0 left-0" />
+              <CarouselNext className="relative inset-0 translate-y-0 right-0" />
+            </div>
+          </Carousel>
+        </div>
+      </section>
+      
+      {/* Statistics Section */}
+      <section className="py-20 bg-dark-secondary">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 text-center animate-on-scroll">
             <div>
@@ -131,7 +217,7 @@ const Landing = () => {
       </section>
       
       {/* Final CTA */}
-      <section className="py-20 bg-dark-secondary">
+      <section className="py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
             Ready to Find Your Perfect Roommate?
