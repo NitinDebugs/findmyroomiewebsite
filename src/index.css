@@ -35,19 +35,12 @@
     --radius: 0.5rem;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -95,7 +88,96 @@
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground;
+  html, body {
+    @apply dark scroll-smooth;
   }
+
+  body {
+    @apply bg-dark text-white min-h-screen;
+    background-image: radial-gradient(circle at 50% 50%, #221F26 0%, #1A1F2C 100%);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Card */
+  .glass-card {
+    @apply bg-opacity-20 bg-white backdrop-blur-lg border border-white/10 rounded-xl shadow-lg;
+  }
+
+  /* Neon Button with glow effect */
+  .neon-button {
+    @apply relative px-6 py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden;
+    background: linear-gradient(90deg, theme('colors.neon.purple'), theme('colors.neon.blue'));
+    box-shadow: 0 0 10px 2px rgba(139, 92, 246, 0.3);
+  }
+  
+  .neon-button:hover {
+    @apply animate-glow;
+    transform: translateY(-2px);
+  }
+
+  /* Neon Pink Button with glow effect */
+  .neon-button-alt {
+    @apply relative px-6 py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden;
+    background: linear-gradient(90deg, theme('colors.neon.pink'), theme('colors.neon.cyan'));
+    box-shadow: 0 0 10px 2px rgba(217, 70, 239, 0.3);
+  }
+  
+  .neon-button-alt:hover {
+    @apply animate-glow;
+    transform: translateY(-2px);
+  }
+
+  /* Neon gradient text */
+  .neon-text {
+    @apply font-bold;
+    background: linear-gradient(90deg, theme('colors.neon.purple'), theme('colors.neon.blue'));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .neon-text-alt {
+    @apply font-bold;
+    background: linear-gradient(90deg, theme('colors.neon.pink'), theme('colors.neon.cyan'));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+/* Custom scroll animation classes */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, theme('colors.neon.purple'), theme('colors.neon.blue'));
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, theme('colors.neon.pink'), theme('colors.neon.cyan'));
+}
+
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left;
 }
