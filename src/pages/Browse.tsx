@@ -116,19 +116,16 @@ const Browse = () => {
   
   const applyFilters = () => {
     const filtered = ROOMMATES.filter(roommate => {
-      // Search query filter
       if (searchQuery && !roommate.name.toLowerCase().includes(searchQuery.toLowerCase()) && 
           !roommate.location.toLowerCase().includes(searchQuery.toLowerCase()) &&
           !roommate.bio.toLowerCase().includes(searchQuery.toLowerCase())) {
         return false;
       }
       
-      // Budget range filter
       if (roommate.budget < budgetRange[0] || roommate.budget > budgetRange[1]) {
         return false;
       }
       
-      // Other filters
       if (filterValues.location && roommate.location !== filterValues.location) {
         return false;
       }
@@ -184,7 +181,6 @@ const Browse = () => {
         </h1>
         
         <div className="flex flex-col md:flex-row gap-8">
-          {/* Filters sidebar for larger screens */}
           <div className={`md:w-1/4 ${showFilters ? 'block' : 'hidden md:block'}`}>
             <GlassmorphismCard className="sticky top-24 animate-fade-in">
               <div className="flex justify-between items-center mb-4">
@@ -200,7 +196,6 @@ const Browse = () => {
               </div>
               
               <div className="space-y-6">
-                {/* Search input */}
                 <div className="space-y-2">
                   <Label htmlFor="search">Search</Label>
                   <div className="relative">
@@ -215,7 +210,6 @@ const Browse = () => {
                   </div>
                 </div>
                 
-                {/* Budget range slider */}
                 <div className="space-y-2">
                   <Label>Budget Range 💸</Label>
                   <div className="pt-5 pb-2">
@@ -232,7 +226,6 @@ const Browse = () => {
                   </div>
                 </div>
                 
-                {/* Location filter */}
                 <div className="space-y-2">
                   <Label htmlFor="location">Location 📍</Label>
                   <Select 
@@ -243,7 +236,7 @@ const Browse = () => {
                       <SelectValue placeholder="All locations" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">All locations</SelectItem>
+                      <SelectItem value="all-locations">All locations</SelectItem>
                       <SelectItem value="Downtown">Downtown</SelectItem>
                       <SelectItem value="Midtown">Midtown</SelectItem>
                       <SelectItem value="Uptown">Uptown</SelectItem>
@@ -254,7 +247,6 @@ const Browse = () => {
                   </Select>
                 </div>
                 
-                {/* Gender filter */}
                 <div className="space-y-2">
                   <Label htmlFor="gender">Gender 🚹🚺</Label>
                   <Select 
@@ -265,7 +257,7 @@ const Browse = () => {
                       <SelectValue placeholder="Any gender" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Any gender</SelectItem>
+                      <SelectItem value="any-gender">Any gender</SelectItem>
                       <SelectItem value="Male">Male</SelectItem>
                       <SelectItem value="Female">Female</SelectItem>
                       <SelectItem value="Non-binary">Non-binary</SelectItem>
@@ -273,7 +265,6 @@ const Browse = () => {
                   </Select>
                 </div>
                 
-                {/* Smoking preference */}
                 <div className="space-y-2">
                   <Label htmlFor="smoking">Smoking 🚬</Label>
                   <Select 
@@ -284,7 +275,7 @@ const Browse = () => {
                       <SelectValue placeholder="Any preference" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Any preference</SelectItem>
+                      <SelectItem value="any-smoking">Any preference</SelectItem>
                       <SelectItem value="Yes">Yes</SelectItem>
                       <SelectItem value="Occasionally">Occasionally</SelectItem>
                       <SelectItem value="No">No</SelectItem>
@@ -292,7 +283,6 @@ const Browse = () => {
                   </Select>
                 </div>
                 
-                {/* Food preference */}
                 <div className="space-y-2">
                   <Label htmlFor="foodType">Food Preference 🍲</Label>
                   <Select 
@@ -303,7 +293,7 @@ const Browse = () => {
                       <SelectValue placeholder="Any preference" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="">Any preference</SelectItem>
+                      <SelectItem value="any-food">Any preference</SelectItem>
                       <SelectItem value="Vegetarian">Vegetarian</SelectItem>
                       <SelectItem value="Non-Vegetarian">Non-Vegetarian</SelectItem>
                       <SelectItem value="Vegan">Vegan</SelectItem>
@@ -331,9 +321,7 @@ const Browse = () => {
             </GlassmorphismCard>
           </div>
           
-          {/* Roommate listings */}
           <div className="md:w-3/4">
-            {/* Mobile filter toggle */}
             <div className="md:hidden mb-6">
               <Button
                 variant="outline"
@@ -354,7 +342,6 @@ const Browse = () => {
                     hoverable
                   >
                     <div className="flex flex-col md:flex-row gap-6">
-                      {/* Profile picture and compatibility score */}
                       <div className="md:w-1/4 flex flex-col items-center">
                         <div className="relative">
                           <img 
@@ -369,7 +356,6 @@ const Browse = () => {
                         <p className="mt-4 text-center text-sm text-white/70">Compatibility</p>
                       </div>
                       
-                      {/* Profile information */}
                       <div className="md:w-3/4">
                         <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
                           <h3 className="text-xl font-semibold">{roommate.name}, {roommate.age}</h3>
@@ -442,7 +428,6 @@ const Browse = () => {
         </div>
       </div>
       
-      {/* Floating action button for mobile filters */}
       <button 
         className="fixed md:hidden bottom-6 right-6 w-14 h-14 rounded-full bg-neon-gradient-1 flex items-center justify-center shadow-lg animate-glow"
         onClick={toggleFilters}
