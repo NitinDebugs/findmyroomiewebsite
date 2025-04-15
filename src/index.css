@@ -1,4 +1,3 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -95,7 +94,12 @@
 
   body {
     @apply bg-dark text-white min-h-screen;
-    background-image: radial-gradient(circle at 50% 50%, #221F26 0%, #1A1F2C 100%);
+    background-image: 
+      linear-gradient(to bottom, rgba(26, 31, 44, 0.85), rgba(26, 31, 44, 0.95)),
+      url('/lovable-uploads/848da02a-910b-46a2-8fcf-a96ee0e224f7.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 }
@@ -204,6 +208,22 @@
 .animate-on-scroll.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.section-container {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.6s ease-out;
+}
+
+.section-container.active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.section-container.inactive {
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 ::-webkit-scrollbar {

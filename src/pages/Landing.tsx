@@ -1,51 +1,20 @@
-
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
-import { Search, Home, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "lucide-react";
+import { Search, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 const Landing = () => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  // Add testimonial data
-  const testimonials = [
-    {
-      name: "Alex Johnson",
-      location: "New York",
-      rating: 5,
-      text: "I found my perfect roommate within a week! The compatibility matching was spot-on and we've been living together for 6 months now without any issues.",
-      image: "https://randomuser.me/api/portraits/men/32.jpg"
-    },
-    {
-      name: "Sarah Williams",
-      location: "Los Angeles",
-      rating: 5,
-      text: "After struggling with bad roommates for years, FindMyRoomie helped me connect with someone who shares my lifestyle and values. Best decision ever!",
-      image: "https://randomuser.me/api/portraits/women/44.jpg"
-    },
-    {
-      name: "Michael Chen",
-      location: "Chicago",
-      rating: 4,
-      text: "The detailed profiles helped me find someone who matched my schedule and habits perfectly. The process was smooth and stress-free.",
-      image: "https://randomuser.me/api/portraits/men/67.jpg"
-    },
-    {
-      name: "Priya Patel",
-      location: "Austin",
-      rating: 5,
-      text: "I was new to the city and needed a roommate fast. Within days I found someone compatible and we're now great friends!",
-      image: "https://randomuser.me/api/portraits/women/63.jpg"
-    }
-  ];
+  useSectionAnimation();
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative h-[90vh] flex items-center">
+      <section className="section-container relative h-[90vh] flex items-center">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-dark to-dark"></div>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
@@ -97,7 +66,7 @@ const Landing = () => {
       </section>
       
       {/* Features Section */}
-      <section className="py-20 bg-dark-secondary">
+      <section className="section-container py-20 bg-dark-secondary/50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
             How <span className="neon-text">FindMyRoomie</span> Works
@@ -144,7 +113,7 @@ const Landing = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-20">
+      <section className="section-container py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 animate-on-scroll">
             Success <span className="neon-text">Stories</span>
@@ -197,7 +166,7 @@ const Landing = () => {
       </section>
       
       {/* Statistics Section */}
-      <section className="py-20 bg-dark-secondary">
+      <section className="section-container py-20 bg-dark-secondary/50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 text-center animate-on-scroll">
             <div>
@@ -217,7 +186,7 @@ const Landing = () => {
       </section>
       
       {/* Final CTA */}
-      <section className="py-20">
+      <section className="section-container py-20">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
             Ready to Find Your Perfect Roommate?
