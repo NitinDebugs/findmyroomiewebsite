@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from 'react';
 
 export function useSectionAnimation() {
@@ -15,7 +14,6 @@ export function useSectionAnimation() {
             target.classList.add('active');
             target.classList.remove('inactive');
             
-            // Make siblings slightly smaller
             siblings.forEach((sibling) => {
               if (sibling !== target) {
                 sibling.classList.add('inactive');
@@ -23,18 +21,27 @@ export function useSectionAnimation() {
               }
             });
 
-            // Add shine effect to the "Find Roommates" button in the first section
             if (target.classList.contains('section-container') && target === siblings[0]) {
               const findRoommatesBtn = target.querySelector('.neon-button');
               if (findRoommatesBtn && !findRoommatesBtn.classList.contains('shine-effect')) {
                 findRoommatesBtn.classList.add('shine-effect');
               }
             }
+          } else {
+            if (entry.intersectionRatio <= 0.1) {
+              target.classList.add('inactive');
+              
+              if (!siblings.some(s => s.classList.contains('active'))) {
+                target.classList.add('semi-visible');
+              } else {
+                target.classList.remove('semi-visible');
+              }
+            }
           }
         });
       },
       {
-        threshold: 0.3,
+        threshold: [0, 0.1, 0.3, 0.5, 0.7, 1],
         rootMargin: '-10% 0px -10% 0px'
       }
     );
@@ -45,10 +52,10 @@ export function useSectionAnimation() {
       sectionRefs.current.push(section as HTMLElement);
     });
 
-    // Ensure the first section's Find Roommates button has shine effect by default
     setTimeout(() => {
       const firstSection = document.querySelector('.section-container');
       if (firstSection) {
+        firstSection.classList.add('active');
         const findRoommatesBtn = firstSection.querySelector('.neon-button');
         if (findRoommatesBtn) {
           findRoommatesBtn.classList.add('shine-effect');
