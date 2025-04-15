@@ -105,36 +105,22 @@
 }
 
 @layer components {
-  /* Glassmorphism Card */
   .glass-card {
     @apply bg-opacity-20 bg-white backdrop-blur-lg border border-white/10 rounded-xl shadow-lg;
   }
 
-  /* Neon Button with glow effect */
   .neon-button {
-    @apply relative px-6 py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden;
+    @apply relative px-6 py-3 rounded-lg font-semibold;
     background: linear-gradient(90deg, theme('colors.neon.purple'), theme('colors.neon.blue'));
     box-shadow: 0 0 10px 2px rgba(139, 92, 246, 0.3);
   }
-  
-  .neon-button:hover {
-    @apply animate-glow;
-    transform: translateY(-2px);
-  }
 
-  /* Neon Pink Button with glow effect */
   .neon-button-alt {
-    @apply relative px-6 py-3 rounded-lg font-semibold transition-all duration-300 overflow-hidden;
+    @apply relative px-6 py-3 rounded-lg font-semibold;
     background: linear-gradient(90deg, theme('colors.neon.pink'), theme('colors.neon.cyan'));
     box-shadow: 0 0 10px 2px rgba(217, 70, 239, 0.3);
   }
-  
-  .neon-button-alt:hover {
-    @apply animate-glow;
-    transform: translateY(-2px);
-  }
 
-  /* Neon gradient text */
   .neon-text {
     @apply font-bold;
     background: linear-gradient(90deg, theme('colors.neon.purple'), theme('colors.neon.blue'));
@@ -148,87 +134,6 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
-
-  /* Exit animation classes */
-  .exit {
-    animation: exit 0.3s ease-out forwards;
-  }
-  
-  @keyframes exit {
-    0% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-    100% {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-  }
-
-  /* Shining animation for buttons */
-  .shine-effect {
-    position: relative;
-    overflow: hidden;
-  }
-  
-  .shine-effect::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0) 0%,
-      rgba(255, 255, 255, 0.3) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-    transform: rotate(30deg);
-    animation: shine 3s infinite;
-  }
-  
-  @keyframes shine {
-    0% {
-      transform: translateX(-100%) rotate(30deg);
-    }
-    20%, 100% {
-      transform: translateX(100%) rotate(30deg);
-    }
-  }
-}
-
-/* Custom scroll animation classes */
-.animate-on-scroll {
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.animate-on-scroll.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.section-container {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: all 0.6s ease-out;
-}
-
-.section-container.active {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.section-container.inactive {
-  opacity: 0;
-  transform: scale(0.9);
-}
-
-.section-container.semi-visible {
-  opacity: 0.5;
-  transform: scale(0.95);
 }
 
 ::-webkit-scrollbar {

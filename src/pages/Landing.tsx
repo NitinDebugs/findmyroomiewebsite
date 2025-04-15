@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -6,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 import { Search, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
-import { useSectionAnimation } from "@/hooks/use-section-animation";
 
 // Define testimonials data
 const testimonials = [
@@ -42,25 +40,24 @@ const testimonials = [
 
 const Landing = () => {
   const [searchQuery, setSearchQuery] = useState("");
-  useSectionAnimation();
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="section-container relative h-[90vh] flex items-center">
+      <section className="relative h-[90vh] flex items-center">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-dark to-dark"></div>
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-fade-in">
+            <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Find Your Perfect <span className="neon-text">Roommate</span> Match
             </h1>
-            <p className="text-xl text-white/80 mb-8 animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            <p className="text-xl text-white/80 mb-8">
               Connect with like-minded roommates who match your lifestyle and preferences. 
               Start your journey to finding the perfect living companion today.
             </p>
             
             {/* Search Bar */}
-            <div className="relative max-w-2xl mx-auto mb-8 animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <div className="relative max-w-2xl mx-auto mb-8">
               <Input
                 type="text"
                 placeholder="🏠 Find a Roommate near you..."
@@ -77,9 +74,9 @@ const Landing = () => {
             </div>
             
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12 animate-fade-in" style={{ animationDelay: "0.6s" }}>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
               <Link to="/browse">
-                <button className="neon-button w-full sm:w-auto shine-effect">
+                <button className="neon-button w-full sm:w-auto">
                   Find Roommates
                 </button>
               </Link>
@@ -91,7 +88,7 @@ const Landing = () => {
             </div>
             
             {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
               <MoveDown className="h-8 w-8 text-white/60" />
             </div>
           </div>
@@ -99,14 +96,14 @@ const Landing = () => {
       </section>
       
       {/* Features Section */}
-      <section className="section-container py-20 bg-dark-secondary/50">
+      <section className="py-20 bg-dark-secondary/50">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 animate-on-scroll">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16">
             How <span className="neon-text">FindMyRoomie</span> Works
           </h2>
           
           <div className="grid md:grid-cols-3 gap-8">
-            <GlassmorphismCard className="animate-on-scroll" hoverable>
+            <GlassmorphismCard hoverable>
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full bg-neon-purple/20 flex items-center justify-center mb-4">
                   <Users className="h-8 w-8 text-neon-purple" />
@@ -118,7 +115,7 @@ const Landing = () => {
               </div>
             </GlassmorphismCard>
             
-            <GlassmorphismCard className="animate-on-scroll" hoverable style={{ animationDelay: "0.2s" }}>
+            <GlassmorphismCard hoverable>
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full bg-neon-blue/20 flex items-center justify-center mb-4">
                   <Filter className="h-8 w-8 text-neon-blue" />
@@ -130,7 +127,7 @@ const Landing = () => {
               </div>
             </GlassmorphismCard>
             
-            <GlassmorphismCard className="animate-on-scroll" hoverable style={{ animationDelay: "0.4s" }}>
+            <GlassmorphismCard hoverable>
               <div className="flex flex-col items-center text-center">
                 <div className="w-16 h-16 rounded-full bg-neon-pink/20 flex items-center justify-center mb-4">
                   <MessageSquare className="h-8 w-8 text-neon-pink" />
@@ -146,12 +143,12 @@ const Landing = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="section-container py-20">
+      <section className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6 animate-on-scroll">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
             Success <span className="neon-text">Stories</span>
           </h2>
-          <p className="text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto animate-on-scroll">
+          <p className="text-xl text-white/80 text-center mb-12 max-w-2xl mx-auto">
             Hear from people who found their perfect roommates using our platform
           </p>
           
@@ -199,9 +196,9 @@ const Landing = () => {
       </section>
       
       {/* Statistics Section */}
-      <section className="section-container py-20 bg-dark-secondary/50">
+      <section className="py-20 bg-dark-secondary/50">
         <div className="container mx-auto px-4">
-          <div className="grid md:grid-cols-3 gap-8 text-center animate-on-scroll">
+          <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
               <h3 className="text-4xl font-bold neon-text mb-2">10,000+</h3>
               <p className="text-white/70">Happy Roommates Matched</p>
@@ -219,15 +216,15 @@ const Landing = () => {
       </section>
       
       {/* Final CTA */}
-      <section className="section-container py-20">
+      <section className="py-20">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 animate-on-scroll">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6">
             Ready to Find Your Perfect Roommate?
           </h2>
-          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto animate-on-scroll">
+          <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto">
             Join thousands of happy roommates who found their perfect match with FindMyRoomie.
           </p>
-          <div className="animate-on-scroll">
+          <div>
             <Link to="/login">
               <button className="neon-button text-lg px-8 py-4">
                 Get Started Now
