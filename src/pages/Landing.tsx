@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -6,6 +7,38 @@ import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 import { Search, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import { useSectionAnimation } from "@/hooks/use-section-animation";
+
+// Define testimonials data
+const testimonials = [
+  {
+    name: "Sarah Johnson",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    location: "New York, NY",
+    rating: 5,
+    text: "I found my roommate through FindMyRoomie in just a week! The compatibility matching was spot on, and we've been living together harmoniously for 6 months now."
+  },
+  {
+    name: "Michael Chen",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    location: "San Francisco, CA",
+    rating: 5,
+    text: "As a student moving to a new city, FindMyRoomie made it easy to connect with someone who had the same study habits and lifestyle as me."
+  },
+  {
+    name: "Emily Rodriguez",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    location: "Chicago, IL",
+    rating: 4,
+    text: "The filtering options are so detailed that I was able to find a roommate who shares my love for cooking and early morning workouts!"
+  },
+  {
+    name: "David Kim",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
+    location: "Austin, TX",
+    rating: 5,
+    text: "After two bad roommate experiences, I was skeptical, but FindMyRoomie's personality matching really works. My new roommate and I get along perfectly!"
+  }
+];
 
 const Landing = () => {
   const [searchQuery, setSearchQuery] = useState("");

@@ -22,6 +22,14 @@ export function useSectionAnimation() {
                 sibling.classList.remove('active');
               }
             });
+
+            // Add shine effect to the "Find Roommates" button in the first section
+            if (target.classList.contains('section-container') && target === siblings[0]) {
+              const findRoommatesBtn = target.querySelector('.neon-button');
+              if (findRoommatesBtn && !findRoommatesBtn.classList.contains('shine-effect')) {
+                findRoommatesBtn.classList.add('shine-effect');
+              }
+            }
           }
         });
       },
@@ -36,6 +44,17 @@ export function useSectionAnimation() {
       observer.observe(section);
       sectionRefs.current.push(section as HTMLElement);
     });
+
+    // Ensure the first section's Find Roommates button has shine effect by default
+    setTimeout(() => {
+      const firstSection = document.querySelector('.section-container');
+      if (firstSection) {
+        const findRoommatesBtn = firstSection.querySelector('.neon-button');
+        if (findRoommatesBtn) {
+          findRoommatesBtn.classList.add('shine-effect');
+        }
+      }
+    }, 500);
 
     return () => {
       sections.forEach((section) => observer.unobserve(section));
