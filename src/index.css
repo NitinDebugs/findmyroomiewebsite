@@ -185,7 +185,7 @@
       rgba(255, 255, 255, 0) 100%
     );
     transform: rotate(30deg);
-    animation: shine 4s infinite ease-in-out;
+    animation: shine 3s infinite;
   }
   
   @keyframes shine {
@@ -202,8 +202,7 @@
 .animate-on-scroll {
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 1s ease-out, transform 1s ease-out;
-  will-change: opacity, transform;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .animate-on-scroll.visible {
@@ -214,8 +213,7 @@
 .section-container {
   opacity: 0;
   transform: scale(0.95);
-  transition: all 1.2s ease-out;
-  will-change: opacity, transform;
+  transition: all 0.6s ease-out;
 }
 
 .section-container.active {
@@ -224,8 +222,8 @@
 }
 
 .section-container.inactive {
-  opacity: 0.2;
-  transform: scale(0.92);
+  opacity: 0;
+  transform: scale(0.9);
 }
 
 .section-container.semi-visible {
