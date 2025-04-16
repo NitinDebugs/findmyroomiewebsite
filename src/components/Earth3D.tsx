@@ -2,11 +2,11 @@
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Canvas, useLoader } from '@react-three/fiber';
-import { TextureLoader } from 'three';
+import { TextureLoader, Mesh } from 'three';
 import { OrbitControls } from '@react-three/drei';
 
 function Earth() {
-  const meshRef = useRef<THREE.Mesh>(null);
+  const meshRef = useRef<Mesh>(null);
   const colorMap = useLoader(TextureLoader, '/lovable-uploads/848da02a-910b-46a2-8fcf-a96ee0e224f7.png');
 
   useFrame(() => {
