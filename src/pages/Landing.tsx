@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -5,36 +6,37 @@ import { Button } from "@/components/ui/button";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 import { Search, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import Earth3D from "@/components/Earth3D";
 
-// Define testimonials data
+// Define testimonials data with Indian context
 const testimonials = [
   {
-    name: "Sarah Johnson",
+    name: "Priya Sharma",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-    location: "New York, NY",
+    location: "Mumbai, Maharashtra",
     rating: 5,
-    text: "I found my roommate through FindMyRoomie in just a week! The compatibility matching was spot on, and we've been living together harmoniously for 6 months now."
+    text: "FindMyRoomie mein ek hafte mein roommate mil gaya! Compatibility matching ekdum perfect thi, aur 6 mahine se hum saath reh rahe hain."
   },
   {
-    name: "Michael Chen",
+    name: "Arjun Patel",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-    location: "San Francisco, CA",
+    location: "Bengaluru, Karnataka",
     rating: 5,
-    text: "As a student moving to a new city, FindMyRoomie made it easy to connect with someone who had the same study habits and lifestyle as me."
+    text: "Naye sheher mein shift hone ke baad, FindMyRoomie ne mere jaise study habits aur lifestyle wale roommate se connect karne mein madad ki."
   },
   {
-    name: "Emily Rodriguez",
+    name: "Neha Gupta",
     image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-    location: "Chicago, IL",
+    location: "Delhi, NCR",
     rating: 4,
-    text: "The filtering options are so detailed that I was able to find a roommate who shares my love for cooking and early morning workouts!"
+    text: "Filter options itne detailed hain ki mujhe cooking aur morning workout dono pasand karne wala roommate mil gaya!"
   },
   {
-    name: "David Kim",
+    name: "Rahul Verma",
     image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=256&q=80",
-    location: "Austin, TX",
+    location: "Pune, Maharashtra",
     rating: 5,
-    text: "After two bad roommate experiences, I was skeptical, but FindMyRoomie's personality matching really works. My new roommate and I get along perfectly!"
+    text: "Do bure experiences ke baad, FindMyRoomie ka personality matching system sach mein kaam karta hai. Mera naya roommate ekdum perfect hai!"
   }
 ];
 
@@ -52,15 +54,20 @@ const Landing = () => {
               Find Your Perfect <span className="neon-text">Roommate</span> Match
             </h1>
             <p className="text-xl text-white/80 mb-8">
-              Connect with like-minded roommates who match your lifestyle and preferences. 
-              Start your journey to finding the perfect living companion today.
+              Connect with like-minded roommates across India who match your lifestyle and preferences. 
+              Starting from just ₹999/month.
             </p>
+            
+            {/* Earth 3D */}
+            <div className="mb-8">
+              <Earth3D />
+            </div>
             
             {/* Search Bar */}
             <div className="relative max-w-2xl mx-auto mb-8">
               <Input
                 type="text"
-                placeholder="🏠 Find a Roommate near you..."
+                placeholder="🏠 Find a Roommate in your city..."
                 className="pl-4 pr-10 py-6 bg-white/5 border-white/10 text-lg rounded-full"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -200,8 +207,8 @@ const Landing = () => {
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div>
-              <h3 className="text-4xl font-bold neon-text mb-2">10,000+</h3>
-              <p className="text-white/70">Happy Roommates Matched</p>
+              <h3 className="text-4xl font-bold neon-text mb-2">₹999/mo</h3>
+              <p className="text-white/70">Starting Price</p>
             </div>
             <div>
               <h3 className="text-4xl font-bold neon-text-alt mb-2">95%</h3>
