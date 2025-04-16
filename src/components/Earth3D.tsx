@@ -1,13 +1,16 @@
 
 import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Canvas, useLoader } from '@react-three/fiber';
-import { TextureLoader, Mesh } from 'three';
-import { OrbitControls } from '@react-three/drei';
+import { Canvas } from '@react-three/fiber';
+import { Mesh } from 'three';
+import { OrbitControls, useTexture } from '@react-three/drei';
 
 function Earth() {
   const meshRef = useRef<Mesh>(null);
-  const colorMap = useLoader(TextureLoader, '/lovable-uploads/848da02a-910b-46a2-8fcf-a96ee0e224f7.png');
+  
+  // Use a reliable texture from a public URL instead of the missing uploaded file
+  const earthTexture = "https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1024&q=80";
+  const texture = useTexture(earthTexture);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -18,7 +21,7 @@ function Earth() {
   return (
     <mesh ref={meshRef}>
       <sphereGeometry args={[2, 32, 32]} />
-      <meshStandardMaterial map={colorMap} />
+      <meshStandardMaterial map={texture} />
     </mesh>
   );
 }
