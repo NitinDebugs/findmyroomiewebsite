@@ -43,7 +43,7 @@ const Earth3D = () => {
           background: 'transparent',
           border: '2px solid transparent',
           borderImage: 'linear-gradient(90deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6) 1',
-          animation: 'rotate 4s linear infinite',
+          animation: 'rotate 8s linear infinite', // Changed from 4s to 8s to slow down the rotation
           WebkitBackgroundClip: 'padding-box'
         }}
       >
