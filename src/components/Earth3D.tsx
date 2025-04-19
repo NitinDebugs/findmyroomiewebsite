@@ -40,7 +40,7 @@ const Earth3D = () => {
       <h1 
         className="text-4xl md:text-5xl font-bold"
         style={{
-          background: 'linear-gradient(90deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6)',
+          background: 'linear-gradient(90deg, #F97316, #D946EF, #0EA5E9, #8B5CF6)',
           backgroundSize: '400% 100%',
           WebkitBackgroundClip: 'text',
           WebkitTextFillColor: 'transparent',
