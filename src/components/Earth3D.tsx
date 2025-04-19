@@ -29,22 +29,22 @@ const Earth3D = () => {
         {`
           @keyframes rotate {
             0% {
-              border-image: linear-gradient(0deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6) 1;
+              background-position: 0% 50%;
             }
             100% {
-              border-image: linear-gradient(360deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6) 1;
+              background-position: 100% 50%;
             }
           }
         `}
       </style>
       <h1 
-        className="text-4xl md:text-5xl font-bold relative p-8"
+        className="text-4xl md:text-5xl font-bold"
         style={{
-          background: 'transparent',
-          border: '2px solid transparent',
-          borderImage: 'linear-gradient(90deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6) 1',
-          animation: 'rotate 8s linear infinite', // Changed from 4s to 8s to slow down the rotation
-          WebkitBackgroundClip: 'padding-box'
+          background: 'linear-gradient(90deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6)',
+          backgroundSize: '400% 100%',
+          WebkitBackgroundClip: 'text',
+          WebkitTextFillColor: 'transparent',
+          animation: 'rotate 8s linear infinite'
         }}
       >
         {text}
