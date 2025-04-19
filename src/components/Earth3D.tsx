@@ -24,13 +24,33 @@ const Earth3D = () => {
   }, []);
   
   return (
-    <div className="h-[400px] w-full flex items-center justify-center bg-gradient-to-r from-purple-900/30 to-indigo-900/30 rounded-lg">
-      <h1 className="text-4xl md:text-5xl font-bold neon-text text-center animate-pulse">
+    <div className="h-[400px] w-full flex items-center justify-center">
+      <h1 
+        className="text-4xl md:text-5xl font-bold relative p-8"
+        style={{
+          background: 'transparent',
+          border: '2px solid transparent',
+          borderImage: 'linear-gradient(90deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6) 1',
+          animation: 'rotate 4s linear infinite',
+          WebkitBackgroundClip: 'padding-box'
+        }}
+      >
         {text}
         <span className="animate-pulse">|</span>
+        <style jsx>{`
+          @keyframes rotate {
+            0% {
+              border-image: linear-gradient(0deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6) 1;
+            }
+            100% {
+              border-image: linear-gradient(360deg, #8B5CF6, #1EAEDB, #33C3F0, #8B5CF6) 1;
+            }
+          }
+        `}</style>
       </h1>
     </div>
   );
 };
 
 export default Earth3D;
+
