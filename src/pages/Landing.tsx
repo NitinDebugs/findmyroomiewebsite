@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Input } from "@/components/ui/input";
@@ -149,7 +148,7 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* Testimonials Section */}
+      {/* Testimonials Section - Already has Indian testimonials */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
@@ -202,7 +201,7 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* Statistics Section */}
+      {/* Statistics Section - Update pricing to INR */}
       <section className="py-20 bg-dark-secondary/50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 text-center">

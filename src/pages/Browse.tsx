@@ -20,17 +20,17 @@ import {
   X
 } from "lucide-react";
 
-// Mock data for roommates
+// Mock data for roommates with Indian names and locations
 const ROOMMATES = [
   {
     id: 1,
-    name: "Alex Johnson",
+    name: "Aryan Sharma",
     age: 24,
     gender: "Male",
     occupation: "Software Engineer at Tech Co",
-    location: "Downtown",
-    budget: 1200,
-    bio: "I'm a laid-back software engineer who enjoys coding, hiking, and occasional gaming sessions. Looking for a clean and respectful roommate.",
+    location: "Delhi",
+    budget: 18000,
+    bio: "I'm a laid-back software engineer who enjoys coding, cricket, and occasional gaming sessions. Looking for a clean and respectful roommate.",
     compatibility: 92,
     smoking: "No",
     foodType: "Non-Vegetarian",
@@ -40,12 +40,12 @@ const ROOMMATES = [
   },
   {
     id: 2,
-    name: "Sophia Lee",
+    name: "Priya Malhotra",
     age: 22,
     gender: "Female",
     occupation: "Graduate Student at City University",
-    location: "Midtown",
-    budget: 950,
+    location: "Greater Noida",
+    budget: 15000,
     bio: "Full-time grad student studying psychology. I'm quiet, organized, and prefer a peaceful living environment for studying.",
     compatibility: 87,
     smoking: "Occasionally",
@@ -56,12 +56,12 @@ const ROOMMATES = [
   },
   {
     id: 3,
-    name: "Marcus Williams",
+    name: "Vikram Singh",
     age: 28,
     gender: "Male",
     occupation: "Marketing Specialist at Brand Agency",
-    location: "West End",
-    budget: 1300,
+    location: "Chandigarh",
+    budget: 22000,
     bio: "Creative professional who loves cooking and hosting small gatherings. Looking for a roommate who appreciates good food and conversation.",
     compatibility: 78,
     smoking: "No",
@@ -72,12 +72,12 @@ const ROOMMATES = [
   },
   {
     id: 4,
-    name: "Priya Patel",
+    name: "Kavita Patel",
     age: 25,
     gender: "Female",
     occupation: "UX Designer at Creative Studio",
-    location: "Downtown",
-    budget: 1100,
+    location: "Delhi",
+    budget: 17000,
     bio: "Designer by day, bookworm by night. I'm tidy, respect personal space, and enjoy occasional movie nights with roommates.",
     compatibility: 94,
     smoking: "No",
@@ -91,7 +91,7 @@ const ROOMMATES = [
 const Browse = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [showFilters, setShowFilters] = useState(false);
-  const [budgetRange, setBudgetRange] = useState<number[]>([300, 3000]);
+  const [budgetRange, setBudgetRange] = useState<number[]>([5000, 30000]);
   const [filterValues, setFilterValues] = useState({
     location: "",
     gender: "",
@@ -161,7 +161,7 @@ const Browse = () => {
   
   const resetFilters = () => {
     setSearchQuery("");
-    setBudgetRange([300, 3000]);
+    setBudgetRange([5000, 30000]);
     setFilterValues({
       location: "",
       gender: "",
@@ -216,13 +216,13 @@ const Browse = () => {
                     <Slider
                       value={budgetRange}
                       onValueChange={setBudgetRange}
-                      min={300}
-                      max={3000}
-                      step={50}
+                      min={5000}
+                      max={30000}
+                      step={1000}
                     />
                   </div>
                   <div className="text-white/70 text-sm">
-                    ${budgetRange[0]} - ${budgetRange[1]}
+                    ₹{budgetRange[0]} - ₹{budgetRange[1]}
                   </div>
                 </div>
                 
@@ -237,15 +237,16 @@ const Browse = () => {
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="all-locations">All locations</SelectItem>
-                      <SelectItem value="Downtown">Downtown</SelectItem>
-                      <SelectItem value="Midtown">Midtown</SelectItem>
-                      <SelectItem value="Uptown">Uptown</SelectItem>
-                      <SelectItem value="West End">West End</SelectItem>
-                      <SelectItem value="East End">East End</SelectItem>
-                      <SelectItem value="Suburbs">Suburbs</SelectItem>
+                      <SelectItem value="Delhi">Delhi</SelectItem>
+                      <SelectItem value="Greater Noida">Greater Noida</SelectItem>
+                      <SelectItem value="Chandigarh">Chandigarh</SelectItem>
+                      <SelectItem value="Mumbai">Mumbai</SelectItem>
+                      <SelectItem value="Bangalore">Bangalore</SelectItem>
+                      <SelectItem value="Pune">Pune</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
+                
                 
                 <div className="space-y-2">
                   <Label htmlFor="gender">Gender 🚹🚺</Label>
@@ -364,7 +365,7 @@ const Browse = () => {
                               {roommate.gender}
                             </span>
                             <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white">
-                              Budget: ${roommate.budget}
+                              Budget: ₹{roommate.budget}
                             </span>
                           </div>
                         </div>

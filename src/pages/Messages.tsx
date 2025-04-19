@@ -1,36 +1,35 @@
-
 import { useState } from "react";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send } from "lucide-react";
 
-// Mock data for conversations
+// Mock data for conversations with Indian names and context
 const CONVERSATIONS = [
   {
     id: 1,
-    name: "Alex Johnson",
-    lastMessage: "Hey, I'm interested in being roommates!",
+    name: "Rahul Mehta",
+    lastMessage: "Bhai, mujhe roommate ki zaroorat hai! Interested ho?",
     time: "10:30 AM",
     profilePic: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fHByb2ZpbGUlMjBwaWN0dXJlfGVufDB8fDB8fHww",
     messages: [
-      { id: 1, sender: "Alex", text: "Hey, I'm interested in being roommates!", time: "10:30 AM" },
-      { id: 2, sender: "You", text: "Hi Alex! Thanks for reaching out. What area are you looking to live in?", time: "10:32 AM" },
-      { id: 3, sender: "Alex", text: "I'm looking for something in Downtown, close to the tech district if possible.", time: "10:35 AM" }
+      { id: 1, sender: "Rahul", text: "Bhai, mujhe roommate ki zaroorat hai! Interested ho?", time: "10:30 AM" },
+      { id: 2, sender: "You", text: "Haan Rahul! Thanks for reaching out. Konse area mein rehna chahte ho?", time: "10:32 AM" },
+      { id: 3, sender: "Rahul", text: "Main Delhi mein tech district ke paas kuch dhund raha hoon, if possible.", time: "10:35 AM" }
     ],
     unread: true
   },
   {
     id: 2,
-    name: "Sophia Lee",
-    lastMessage: "The apartment sounds great! When can we visit?",
+    name: "Pooja Gupta",
+    lastMessage: "Flat toh bohot acha lag raha hai! Kab visit kar sakte hain?",
     time: "Yesterday",
     profilePic: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D",
     messages: [
-      { id: 1, sender: "You", text: "Hi Sophia, I found a great 2BHK in Midtown!", time: "Yesterday" },
-      { id: 2, sender: "Sophia", text: "That sounds promising! What's the rent like?", time: "Yesterday" },
-      { id: 3, sender: "You", text: "It's $1400 total, so $700 each. Utilities included.", time: "Yesterday" },
-      { id: 4, sender: "Sophia", text: "The apartment sounds great! When can we visit?", time: "Yesterday" }
+      { id: 1, sender: "You", text: "Hi Pooja, mujhe Greater Noida mein ek acha 2BHK mila hai!", time: "Yesterday" },
+      { id: 2, sender: "Pooja", text: "Wow! Kitna hai rent?", time: "Yesterday" },
+      { id: 3, sender: "You", text: "Total ₹22,000 hai, so ₹11,000 each. Bijli pani included.", time: "Yesterday" },
+      { id: 4, sender: "Pooja", text: "Flat toh bohot acha lag raha hai! Kab visit kar sakte hain?", time: "Yesterday" }
     ],
     unread: false
   }
