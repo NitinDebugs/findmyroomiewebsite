@@ -1,3 +1,4 @@
+
 import * as React from "react"
 import useEmblaCarousel, {
   type UseEmblaCarouselType,
@@ -75,15 +76,24 @@ const Carousel = React.forwardRef<
       setCanScrollNext(api.canScrollNext())
     }, [])
 
+    const scrollPrev = React.useCallback(() => {
+      api?.scrollPrev()
+    }, [api])
+
+    const scrollNext = React.useCallback(() => {
+      api?.scrollNext()
+    }, [api])
+    
+    // Check if autoplay is enabled via opts.loop
     React.useEffect(() => {
-      if (!api || !opts?.autoplay) return
+      if (!api || !opts?.loop) return
 
       const intervalId = setInterval(() => {
         api.scrollNext()
       }, 3000) // Scrolls every 3 seconds
 
       return () => clearInterval(intervalId)
-    }, [api, opts?.autoplay])
+    }, [api, opts?.loop])
 
     React.useEffect(() => {
       if (!api) {

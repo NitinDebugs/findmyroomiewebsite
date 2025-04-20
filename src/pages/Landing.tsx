@@ -163,8 +163,7 @@ const Landing = () => {
               align: "start",
               loop: true,
               skipSnaps: false,
-              duration: 20,
-              autoplay: true,
+              duration: 20
             }}
           >
             <CarouselContent>
