@@ -5,7 +5,18 @@ import { Button } from "@/components/ui/button";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 import { Search, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "lucide-react";
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
+import {
+  Command,
+  CommandDialog,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import Earth3D from "@/components/Earth3D";
+import { cityOptions } from "@/utils/cities";
 
 const testimonials = [
   {
@@ -40,6 +51,7 @@ const testimonials = [
 
 const Landing = () => {
   const [searchQuery, setSearchQuery] = useState("");
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="min-h-screen">
@@ -61,21 +73,52 @@ const Landing = () => {
               <Earth3D />
             </div>
             
-            {/* Search Bar */}
+            {/* Search Bar with Autocomplete */}
             <div className="relative max-w-2xl mx-auto mb-8">
-              <Input
-                type="text"
-                placeholder="🏠 Find a Roommate in your city..."
-                className="pl-4 pr-10 py-6 bg-white/5 border-white/10 text-lg rounded-full"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-              <Button 
-                size="icon" 
-                className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-transparent hover:bg-white/10"
-              >
-                <Search className="h-5 w-5 text-white" />
-              </Button>
+              <Popover open={open} onOpenChange={setOpen}>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant="outline"
+                    role="combobox"
+                    aria-expanded={open}
+                    className="w-full justify-between pl-4 pr-10 py-6 bg-white/5 border-white/10 text-lg rounded-full"
+                  >
+                    {searchQuery ? 
+                      cityOptions.find((city) => city.value === searchQuery)?.label 
+                      : "🏠 Find a Roommate in your city..."}
+                    <Search className="ml-2 h-5 w-5 shrink-0 opacity-50" />
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-full p-0 max-h-[300px] overflow-auto">
+                  <Command>
+                    <CommandInput 
+                      placeholder="Search cities..." 
+                      className="h-12"
+                    />
+                    <CommandList>
+                      <CommandEmpty>No results found.</CommandEmpty>
+                      {["Popular Cities", "Delhi NCR", "Mumbai", "Bangalore"].map((category) => (
+                        <CommandGroup key={category} heading={category}>
+                          {cityOptions
+                            .filter((city) => city.category === category)
+                            .map((city) => (
+                              <CommandItem
+                                key={city.value}
+                                value={city.value}
+                                onSelect={(value) => {
+                                  setSearchQuery(value);
+                                  setOpen(false);
+                                }}
+                              >
+                                {city.label}
+                              </CommandItem>
+                            ))}
+                        </CommandGroup>
+                      ))}
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
             </div>
             
             {/* CTA Buttons */}
