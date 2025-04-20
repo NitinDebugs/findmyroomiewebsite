@@ -35,16 +35,16 @@ const Navbar = () => {
         </Link>
         
         <div className="hidden md:flex items-center gap-4 lg:gap-6">
-          <Link to="/" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
+          <Link to="/" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base whitespace-nowrap">
             Home
           </Link>
-          <Link to="/browse" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
+          <Link to="/browse" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base whitespace-nowrap">
             Browse
           </Link>
-          <Link to="/messages" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
+          <Link to="/messages" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base whitespace-nowrap">
             Messages
           </Link>
-          <Link to="/login" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base">
+          <Link to="/login" className="text-white/80 hover:text-white transition-colors text-sm lg:text-base whitespace-nowrap">
             Login
           </Link>
         </div>

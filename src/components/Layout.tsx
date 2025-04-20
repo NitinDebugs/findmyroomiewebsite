@@ -8,9 +8,9 @@ interface LayoutProps {
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="flex flex-col min-h-screen max-w-[100vw] overflow-x-hidden">
+    <div className="flex flex-col min-h-screen w-full overflow-x-hidden">
       <Navbar />
-      <main className="flex-grow pt-16 sm:pt-20 w-full">
+      <main className="flex-grow w-full pt-16 sm:pt-20">
         {children}
       </main>
       <footer className="mt-auto border-t border-white/10 py-4 sm:py-6">

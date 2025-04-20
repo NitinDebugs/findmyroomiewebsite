@@ -24,7 +24,7 @@ const Earth3D = () => {
   }, []);
   
   return (
-    <div className="h-[300px] sm:h-[350px] md:h-[400px] w-full flex items-center justify-center px-4 overflow-hidden">
+    <div className="min-h-[200px] h-[30vh] sm:h-[35vh] md:h-[40vh] w-full flex items-center justify-center px-4 overflow-hidden">
       <style>
         {`
           @keyframes rotate {
@@ -38,7 +38,7 @@ const Earth3D = () => {
         `}
       </style>
       <h1 
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-center"
+        className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center max-w-full"
         style={{
           background: 'linear-gradient(90deg, #F97316, #D946EF, #0EA5E9, #8B5CF6)',
           backgroundSize: '400% 100%',
