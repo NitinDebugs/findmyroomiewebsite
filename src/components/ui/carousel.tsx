@@ -75,34 +75,15 @@ const Carousel = React.forwardRef<
       setCanScrollNext(api.canScrollNext())
     }, [])
 
-    const scrollPrev = React.useCallback(() => {
-      api?.scrollPrev()
-    }, [api])
-
-    const scrollNext = React.useCallback(() => {
-      api?.scrollNext()
-    }, [api])
-
-    const handleKeyDown = React.useCallback(
-      (event: React.KeyboardEvent<HTMLDivElement>) => {
-        if (event.key === "ArrowLeft") {
-          event.preventDefault()
-          scrollPrev()
-        } else if (event.key === "ArrowRight") {
-          event.preventDefault()
-          scrollNext()
-        }
-      },
-      [scrollPrev, scrollNext]
-    )
-
     React.useEffect(() => {
-      if (!api || !setApi) {
-        return
-      }
+      if (!api || !opts?.autoplay) return
 
-      setApi(api)
-    }, [api, setApi])
+      const intervalId = setInterval(() => {
+        api.scrollNext()
+      }, 3000) // Scrolls every 3 seconds
+
+      return () => clearInterval(intervalId)
+    }, [api, opts?.autoplay])
 
     React.useEffect(() => {
       if (!api) {
@@ -134,7 +115,6 @@ const Carousel = React.forwardRef<
       >
         <div
           ref={ref}
-          onKeyDownCapture={handleKeyDown}
           className={cn("relative", className)}
           role="region"
           aria-roledescription="carousel"

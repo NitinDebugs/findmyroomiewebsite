@@ -7,7 +7,6 @@ import { Search, MoveDown, Users, MessageSquare, Filter, Star, Quote } from "luc
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel";
 import Earth3D from "@/components/Earth3D";
 
-// Define testimonials data with Indian context
 const testimonials = [
   {
     name: "Priya Sharma",
@@ -148,7 +147,7 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* Testimonials Section - Already has Indian testimonials */}
+      {/* Testimonials Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-6">
@@ -158,7 +157,16 @@ const Landing = () => {
             Hear from people who found their perfect roommates using our platform
           </p>
           
-          <Carousel className="mx-auto max-w-5xl">
+          <Carousel 
+            className="mx-auto max-w-5xl" 
+            opts={{
+              align: "start",
+              loop: true,
+              skipSnaps: false,
+              duration: 20,
+              autoplay: true,
+            }}
+          >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/2">
@@ -201,7 +209,7 @@ const Landing = () => {
         </div>
       </section>
       
-      {/* Statistics Section - Update pricing to INR */}
+      {/* Statistics Section */}
       <section className="py-20 bg-dark-secondary/50">
         <div className="container mx-auto px-4">
           <div className="grid md:grid-cols-3 gap-8 text-center">
