@@ -19,8 +19,8 @@ import {
   UserPlus,
   X
 } from "lucide-react";
+import RoommateProfileDialog from "@/components/RoommateProfileDialog";
 
-// Mock data for roommates with Indian names and locations
 const ROOMMATES = [
   {
     id: 1,
@@ -100,6 +100,8 @@ const Browse = () => {
     partyPreference: "",
     petPreference: ""
   });
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [selectedRoommate, setSelectedRoommate] = useState(null);
   
   const [filteredRoommates, setFilteredRoommates] = useState(ROOMMATES);
   
@@ -398,17 +400,21 @@ const Browse = () => {
                         </div>
                         
                         <div className="flex flex-wrap gap-3">
-                          <Link to={`/profile/${roommate.id}`}>
-                            <Button variant="outline" className="border-white/10">
-                              View Profile
-                            </Button>
-                          </Link>
-                          <Link to={`/messages/${roommate.id}`}>
+                          <Button
+                            className="font-semibold bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue text-white shadow transition-all rounded-full py-2 px-5 hover:from-neon-blue hover:to-neon-purple border-0"
+                            onClick={() => {
+                              setSelectedRoommate(roommate);
+                              setDialogOpen(true);
+                            }}
+                          >
+                            View Profile
+                          </Button>
+                          <a href={`/messages/${roommate.id}`}>
                             <Button className="neon-button">
                               <MessageSquare className="h-4 w-4 mr-2" />
                               Send Message
                             </Button>
-                          </Link>
+                          </a>
                         </div>
                       </div>
                     </div>
@@ -435,6 +441,12 @@ const Browse = () => {
       >
         <Filter className="h-6 w-6 text-white" />
       </button>
+      
+      <RoommateProfileDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        roommate={selectedRoommate}
+      />
     </div>
   );
 };
