@@ -13,8 +13,12 @@ export default {
 	theme: {
 		container: {
 			center: true,
-			padding: '2rem',
+			padding: '1rem',
 			screens: {
+				'sm': '640px',
+				'md': '768px',
+				'lg': '1024px',
+				'xl': '1280px',
 				'2xl': '1400px'
 			}
 		},
@@ -63,19 +67,17 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Neon color scheme
-				neon: {
-					purple: '#9b87f5',
-					blue: '#1EAEDB',
-					pink: '#D946EF',
-					cyan: '#33C3F0',
-					glow: '#8B5CF6'
-				},
-				// Dark theme colors
-				dark: {
-					DEFAULT: '#1A1F2C',
-					secondary: '#221F26'
-				}
+				// Colorful palette
+				coral: '#ff6b6b',
+				teal: '#4ecdc4',
+				sky: '#45b7d1',
+				mint: '#96ceb4',
+				peach: '#ffeaa7',
+				lavender: '#a29bfe',
+				rose: '#fd79a8',
+				lime: '#00b894',
+				sunset: '#fdcb6e',
+				ocean: '#0984e3'
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -131,10 +133,10 @@ export default {
 				},
 				'glow': {
 					'0%, 100%': {
-						'box-shadow': '0 0 15px 2px rgba(139, 92, 246, 0.5)'
+						'box-shadow': '0 0 15px 2px rgba(255, 107, 107, 0.5)'
 					},
 					'50%': {
-						'box-shadow': '0 0 25px 5px rgba(139, 92, 246, 0.7)'
+						'box-shadow': '0 0 25px 5px rgba(78, 205, 196, 0.7)'
 					}
 				},
 				'exit': {
@@ -146,6 +148,11 @@ export default {
 						opacity: '0',
 						transform: 'translateY(10px)'
 					}
+				},
+				'gradient-shift': {
+					'0%': { 'background-position': '0% 50%' },
+					'50%': { 'background-position': '100% 50%' },
+					'100%': { 'background-position': '0% 50%' }
 				}
 			},
 			animation: {
@@ -155,11 +162,19 @@ export default {
 				'fade-out': 'fade-out 0.5s ease-out',
 				'scale-in': 'scale-in 0.3s ease-out',
 				'glow': 'glow 2s ease-in-out infinite',
-				'exit': 'exit 0.3s ease-out'
+				'exit': 'exit 0.3s ease-out',
+				'gradient-shift': 'gradient-shift 8s ease infinite'
 			},
 			backgroundImage: {
-				'neon-gradient-1': 'linear-gradient(to right, #9b87f5, #1EAEDB)',
-				'neon-gradient-2': 'linear-gradient(to right, #D946EF, #33C3F0)',
+				'rainbow-gradient': 'linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4)',
+				'sunset-gradient': 'linear-gradient(45deg, #ffeaa7, #fdcb6e, #fd79a8)',
+				'ocean-gradient': 'linear-gradient(45deg, #0984e3, #45b7d1, #4ecdc4)',
+			},
+			spacing: {
+				'safe-top': 'env(safe-area-inset-top)',
+				'safe-bottom': 'env(safe-area-inset-bottom)',
+				'safe-left': 'env(safe-area-inset-left)',
+				'safe-right': 'env(safe-area-inset-right)',
 			}
 		}
 	},
