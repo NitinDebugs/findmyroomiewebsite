@@ -1,26 +1,8 @@
 
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Slider } from "@/components/ui/slider";
-import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { 
-  Search, 
-  Filter, 
-  MapPin, 
-  User, 
-  DollarSign, 
-  Coffee, 
-  Home, 
-  MessageSquare, 
-  UserPlus,
-  X
-} from "lucide-react";
 import RoommateProfileDialog from "@/components/RoommateProfileDialog";
+import FilterSection from "@/components/FilterSection";
+import RoommateList from "@/components/RoommateList";
 
 const ROOMMATES = [
   {
@@ -103,7 +85,6 @@ const Browse = () => {
   });
   const [dialogOpen, setDialogOpen] = useState(false);
   const [selectedRoommate, setSelectedRoommate] = useState(null);
-  
   const [filteredRoommates, setFilteredRoommates] = useState(ROOMMATES);
   
   // Auto-apply filters whenever any filter value changes
@@ -186,6 +167,11 @@ const Browse = () => {
     setFilteredRoommates(ROOMMATES);
   };
 
+  const handleViewProfile = (roommate) => {
+    setSelectedRoommate(roommate);
+    setDialogOpen(true);
+  };
+
   return (
     <div className="min-h-screen py-20">
       <div className="container mx-auto px-4">
@@ -194,298 +180,27 @@ const Browse = () => {
         </h1>
         
         <div className="flex flex-col md:flex-row gap-8">
-          <div className={`md:w-1/4 ${showFilters ? 'block' : 'hidden md:block'}`}>
-            <GlassmorphismCard className="sticky top-24 animate-fade-in">
-              <div className="flex justify-between items-center mb-4">
-                <h2 className="text-xl font-semibold flex items-center gap-2">
-                  <Filter className="w-5 h-5" /> Filters
-                </h2>
-                <button 
-                  onClick={toggleFilters}
-                  className="md:hidden"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-              
-              <div className="space-y-6">
-                <div className="space-y-2">
-                  <Label htmlFor="search">Search</Label>
-                  <div className="relative">
-                    <Input
-                      id="search"
-                      placeholder="Search by name, location..."
-                      value={searchQuery}
-                      onChange={(e) => setSearchQuery(e.target.value)}
-                      className="pl-10 bg-white/5 border-white/10"
-                    />
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-white/50" />
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label>Budget Range 💸</Label>
-                  <div className="pt-5 pb-2">
-                    <Slider
-                      value={budgetRange}
-                      onValueChange={setBudgetRange}
-                      min={5000}
-                      max={30000}
-                      step={1000}
-                    />
-                  </div>
-                  <div className="text-white/70 text-sm">
-                    ₹{budgetRange[0]} - ₹{budgetRange[1]}
-                  </div>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="location">Location 📍</Label>
-                  <Select 
-                    value={filterValues.location || "all-locations"} 
-                    onValueChange={(value) => handleFilterChange("location", value)}
-                  >
-                    <SelectTrigger className="bg-white/5 border-white/10">
-                      <SelectValue placeholder="All locations" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-white/10">
-                      <SelectItem value="all-locations">All locations</SelectItem>
-                      <SelectItem value="Delhi">Delhi</SelectItem>
-                      <SelectItem value="Greater Noida">Greater Noida</SelectItem>
-                      <SelectItem value="Chandigarh">Chandigarh</SelectItem>
-                      <SelectItem value="Mumbai">Mumbai</SelectItem>
-                      <SelectItem value="Bangalore">Bangalore</SelectItem>
-                      <SelectItem value="Pune">Pune</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                
-                <div className="space-y-2">
-                  <Label htmlFor="gender">Gender 🚹🚺</Label>
-                  <Select 
-                    value={filterValues.gender || "any-gender"} 
-                    onValueChange={(value) => handleFilterChange("gender", value)}
-                  >
-                    <SelectTrigger className="bg-white/5 border-white/10">
-                      <SelectValue placeholder="Any gender" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-white/10">
-                      <SelectItem value="any-gender">Any gender</SelectItem>
-                      <SelectItem value="Male">Male</SelectItem>
-                      <SelectItem value="Female">Female</SelectItem>
-                      <SelectItem value="Non-binary">Non-binary</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="smoking">Smoking 🚬</Label>
-                  <Select 
-                    value={filterValues.smoking || "any-smoking"} 
-                    onValueChange={(value) => handleFilterChange("smoking", value)}
-                  >
-                    <SelectTrigger className="bg-white/5 border-white/10">
-                      <SelectValue placeholder="Any preference" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-white/10">
-                      <SelectItem value="any-smoking">Any preference</SelectItem>
-                      <SelectItem value="Yes">Yes</SelectItem>
-                      <SelectItem value="Occasionally">Occasionally</SelectItem>
-                      <SelectItem value="No">No</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="foodType">Food Preference 🍲</Label>
-                  <Select 
-                    value={filterValues.foodType || "any-food"} 
-                    onValueChange={(value) => handleFilterChange("foodType", value)}
-                  >
-                    <SelectTrigger className="bg-white/5 border-white/10">
-                      <SelectValue placeholder="Any preference" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-white/10">
-                      <SelectItem value="any-food">Any preference</SelectItem>
-                      <SelectItem value="Vegetarian">Vegetarian</SelectItem>
-                      <SelectItem value="Non-Vegetarian">Non-Vegetarian</SelectItem>
-                      <SelectItem value="Vegan">Vegan</SelectItem>
-                      <SelectItem value="Eggetarian">Eggetarian</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="partyPreference">Party Preference 🎉</Label>
-                  <Select 
-                    value={filterValues.partyPreference || "any-party"} 
-                    onValueChange={(value) => handleFilterChange("partyPreference", value)}
-                  >
-                    <SelectTrigger className="bg-white/5 border-white/10">
-                      <SelectValue placeholder="Any preference" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-white/10">
-                      <SelectItem value="any-party">Any preference</SelectItem>
-                      <SelectItem value="Party Animal">Party Animal</SelectItem>
-                      <SelectItem value="Chill">Chill</SelectItem>
-                      <SelectItem value="Quiet">Quiet</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="space-y-2">
-                  <Label htmlFor="petPreference">Pet Preference 🐶</Label>
-                  <Select 
-                    value={filterValues.petPreference || "any-pet"} 
-                    onValueChange={(value) => handleFilterChange("petPreference", value)}
-                  >
-                    <SelectTrigger className="bg-white/5 border-white/10">
-                      <SelectValue placeholder="Any preference" />
-                    </SelectTrigger>
-                    <SelectContent className="bg-gray-900 border-white/10">
-                      <SelectItem value="any-pet">Any preference</SelectItem>
-                      <SelectItem value="Love them">Love them</SelectItem>
-                      <SelectItem value="Okay">Okay</SelectItem>
-                      <SelectItem value="Allergic">Allergic</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                
-                <div className="flex gap-2 pt-4">
-                  <Button
-                    variant="outline"
-                    className="flex-1 border-white/10 hover:bg-white/5"
-                    onClick={resetFilters}
-                  >
-                    Reset
-                  </Button>
-                </div>
-              </div>
-            </GlassmorphismCard>
-          </div>
+          <FilterSection
+            showFilters={showFilters}
+            toggleFilters={toggleFilters}
+            searchQuery={searchQuery}
+            setSearchQuery={setSearchQuery}
+            budgetRange={budgetRange}
+            setBudgetRange={setBudgetRange}
+            filterValues={filterValues}
+            handleFilterChange={handleFilterChange}
+            resetFilters={resetFilters}
+            resultsCount={filteredRoommates.length}
+          />
           
-          <div className="md:w-3/4">
-            <div className="md:hidden mb-6">
-              <Button
-                variant="outline"
-                className="w-full border-white/10 flex items-center justify-center gap-2"
-                onClick={toggleFilters}
-              >
-                <Filter className="h-5 w-5" /> 
-                Show Filters ({filteredRoommates.length} results)
-              </Button>
-            </div>
-            
-            <div className="mb-4 text-white/70">
-              Showing {filteredRoommates.length} of {ROOMMATES.length} roommates
-            </div>
-            
-            <div className="space-y-6">
-              {filteredRoommates.length > 0 ? (
-                filteredRoommates.map((roommate) => (
-                  <GlassmorphismCard 
-                    key={roommate.id} 
-                    className="animate-on-scroll"
-                    hoverable
-                  >
-                    <div className="flex flex-col md:flex-row gap-6">
-                      <div className="md:w-1/4 flex flex-col items-center">
-                        <div className="relative">
-                          <img 
-                            src={roommate.profilePic} 
-                            alt={roommate.name}
-                            className="w-32 h-32 rounded-full object-cover border-2 border-white/10" 
-                          />
-                          <div className="absolute -bottom-2 -right-2 bg-neon-gradient-1 text-white font-bold rounded-full w-12 h-12 flex items-center justify-center">
-                            {roommate.compatibility}%
-                          </div>
-                        </div>
-                        <p className="mt-4 text-center text-sm text-white/70">Compatibility</p>
-                      </div>
-                      
-                      <div className="md:w-3/4">
-                        <div className="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                          <h3 className="text-xl font-semibold">{roommate.name}, {roommate.age}</h3>
-                          <div className="flex flex-wrap gap-2 mt-2 md:mt-0">
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white">
-                              {roommate.gender}
-                            </span>
-                            <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white">
-                              Budget: ₹{roommate.budget}
-                            </span>
-                          </div>
-                        </div>
-                        
-                        <div className="mb-3 flex items-center text-white/70 text-sm">
-                          <MapPin className="h-4 w-4 mr-1" />
-                          {roommate.location}
-                        </div>
-                        
-                        <div className="mb-3 flex items-center text-white/70 text-sm">
-                          <User className="h-4 w-4 mr-1" />
-                          {roommate.occupation}
-                        </div>
-                        
-                        <p className="mb-4 text-white/90">{roommate.bio}</p>
-                        
-                        <div className="flex flex-wrap gap-2 mb-4">
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white">
-                            🚬 {roommate.smoking}
-                          </span>
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white">
-                            🍲 {roommate.foodType}
-                          </span>
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white">
-                            🎉 {roommate.partyPreference}
-                          </span>
-                          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-white/10 text-white">
-                            🐶 {roommate.petPreference}
-                          </span>
-                        </div>
-                        
-                        <div className="flex flex-wrap gap-3">
-                          <Button
-                            className="font-semibold bg-gradient-to-r from-neon-pink via-neon-purple to-neon-blue text-white shadow transition-all rounded-full py-2 px-5 hover:from-neon-blue hover:to-neon-purple border-0"
-                            onClick={() => {
-                              setSelectedRoommate(roommate);
-                              setDialogOpen(true);
-                            }}
-                          >
-                            View Profile
-                          </Button>
-                          <a href={`/messages/${roommate.id}`}>
-                            <Button className="neon-button">
-                              <MessageSquare className="h-4 w-4 mr-2" />
-                              Send Message
-                            </Button>
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </GlassmorphismCard>
-                ))
-              ) : (
-                <div className="text-center py-16">
-                  <div className="text-4xl mb-4">😕</div>
-                  <h3 className="text-xl font-semibold mb-2">No Matches Found</h3>
-                  <p className="text-white/70 mb-6">Try adjusting your filters to see more results</p>
-                  <Button onClick={resetFilters} className="neon-button">
-                    Reset Filters
-                  </Button>
-                </div>
-              )}
-            </div>
-          </div>
+          <RoommateList
+            roommates={filteredRoommates}
+            totalRoommates={ROOMMATES.length}
+            onViewProfile={handleViewProfile}
+            onResetFilters={resetFilters}
+          />
         </div>
       </div>
-      
-      <button 
-        className="fixed md:hidden bottom-6 right-6 w-14 h-14 rounded-full bg-neon-gradient-1 flex items-center justify-center shadow-lg animate-glow"
-        onClick={toggleFilters}
-      >
-        <Filter className="h-6 w-6 text-white" />
-      </button>
       
       <RoommateProfileDialog
         open={dialogOpen}
