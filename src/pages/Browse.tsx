@@ -1,4 +1,5 @@
-import { useState } from "react";
+
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { GlassmorphismCard } from "@/components/ui/glassmorphism-card";
 import { Button } from "@/components/ui/button";
@@ -105,6 +106,11 @@ const Browse = () => {
   
   const [filteredRoommates, setFilteredRoommates] = useState(ROOMMATES);
   
+  // Auto-apply filters whenever any filter value changes
+  useEffect(() => {
+    applyFilters();
+  }, [searchQuery, budgetRange, filterValues]);
+  
   const toggleFilters = () => {
     setShowFilters(!showFilters);
   };
@@ -112,42 +118,50 @@ const Browse = () => {
   const handleFilterChange = (name: string, value: string) => {
     setFilterValues(prev => ({
       ...prev,
-      [name]: value
+      [name]: value === `any-${name}` || value === "all-locations" || value === "any-gender" || value === "any-smoking" || value === "any-food" ? "" : value
     }));
   };
   
   const applyFilters = () => {
     const filtered = ROOMMATES.filter(roommate => {
+      // Search filter
       if (searchQuery && !roommate.name.toLowerCase().includes(searchQuery.toLowerCase()) && 
           !roommate.location.toLowerCase().includes(searchQuery.toLowerCase()) &&
           !roommate.bio.toLowerCase().includes(searchQuery.toLowerCase())) {
         return false;
       }
       
+      // Budget filter
       if (roommate.budget < budgetRange[0] || roommate.budget > budgetRange[1]) {
         return false;
       }
       
+      // Location filter
       if (filterValues.location && roommate.location !== filterValues.location) {
         return false;
       }
       
+      // Gender filter
       if (filterValues.gender && roommate.gender !== filterValues.gender) {
         return false;
       }
       
+      // Smoking filter
       if (filterValues.smoking && roommate.smoking !== filterValues.smoking) {
         return false;
       }
       
+      // Food type filter
       if (filterValues.foodType && roommate.foodType !== filterValues.foodType) {
         return false;
       }
       
+      // Party preference filter
       if (filterValues.partyPreference && roommate.partyPreference !== filterValues.partyPreference) {
         return false;
       }
       
+      // Pet preference filter
       if (filterValues.petPreference && roommate.petPreference !== filterValues.petPreference) {
         return false;
       }
@@ -156,9 +170,6 @@ const Browse = () => {
     });
     
     setFilteredRoommates(filtered);
-    if (window.innerWidth < 768) {
-      setShowFilters(false);
-    }
   };
   
   const resetFilters = () => {
@@ -231,13 +242,13 @@ const Browse = () => {
                 <div className="space-y-2">
                   <Label htmlFor="location">Location 📍</Label>
                   <Select 
-                    value={filterValues.location} 
+                    value={filterValues.location || "all-locations"} 
                     onValueChange={(value) => handleFilterChange("location", value)}
                   >
                     <SelectTrigger className="bg-white/5 border-white/10">
                       <SelectValue placeholder="All locations" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-gray-900 border-white/10">
                       <SelectItem value="all-locations">All locations</SelectItem>
                       <SelectItem value="Delhi">Delhi</SelectItem>
                       <SelectItem value="Greater Noida">Greater Noida</SelectItem>
@@ -253,13 +264,13 @@ const Browse = () => {
                 <div className="space-y-2">
                   <Label htmlFor="gender">Gender 🚹🚺</Label>
                   <Select 
-                    value={filterValues.gender} 
+                    value={filterValues.gender || "any-gender"} 
                     onValueChange={(value) => handleFilterChange("gender", value)}
                   >
                     <SelectTrigger className="bg-white/5 border-white/10">
                       <SelectValue placeholder="Any gender" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-gray-900 border-white/10">
                       <SelectItem value="any-gender">Any gender</SelectItem>
                       <SelectItem value="Male">Male</SelectItem>
                       <SelectItem value="Female">Female</SelectItem>
@@ -271,13 +282,13 @@ const Browse = () => {
                 <div className="space-y-2">
                   <Label htmlFor="smoking">Smoking 🚬</Label>
                   <Select 
-                    value={filterValues.smoking} 
+                    value={filterValues.smoking || "any-smoking"} 
                     onValueChange={(value) => handleFilterChange("smoking", value)}
                   >
                     <SelectTrigger className="bg-white/5 border-white/10">
                       <SelectValue placeholder="Any preference" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-gray-900 border-white/10">
                       <SelectItem value="any-smoking">Any preference</SelectItem>
                       <SelectItem value="Yes">Yes</SelectItem>
                       <SelectItem value="Occasionally">Occasionally</SelectItem>
@@ -289,18 +300,54 @@ const Browse = () => {
                 <div className="space-y-2">
                   <Label htmlFor="foodType">Food Preference 🍲</Label>
                   <Select 
-                    value={filterValues.foodType} 
+                    value={filterValues.foodType || "any-food"} 
                     onValueChange={(value) => handleFilterChange("foodType", value)}
                   >
                     <SelectTrigger className="bg-white/5 border-white/10">
                       <SelectValue placeholder="Any preference" />
                     </SelectTrigger>
-                    <SelectContent>
+                    <SelectContent className="bg-gray-900 border-white/10">
                       <SelectItem value="any-food">Any preference</SelectItem>
                       <SelectItem value="Vegetarian">Vegetarian</SelectItem>
                       <SelectItem value="Non-Vegetarian">Non-Vegetarian</SelectItem>
                       <SelectItem value="Vegan">Vegan</SelectItem>
                       <SelectItem value="Eggetarian">Eggetarian</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="partyPreference">Party Preference 🎉</Label>
+                  <Select 
+                    value={filterValues.partyPreference || "any-party"} 
+                    onValueChange={(value) => handleFilterChange("partyPreference", value)}
+                  >
+                    <SelectTrigger className="bg-white/5 border-white/10">
+                      <SelectValue placeholder="Any preference" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-gray-900 border-white/10">
+                      <SelectItem value="any-party">Any preference</SelectItem>
+                      <SelectItem value="Party Animal">Party Animal</SelectItem>
+                      <SelectItem value="Chill">Chill</SelectItem>
+                      <SelectItem value="Quiet">Quiet</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="petPreference">Pet Preference 🐶</Label>
+                  <Select 
+                    value={filterValues.petPreference || "any-pet"} 
+                    onValueChange={(value) => handleFilterChange("petPreference", value)}
+                  >
+                    <SelectTrigger className="bg-white/5 border-white/10">
+                      <SelectValue placeholder="Any preference" />
+                    </SelectTrigger>
+                    <SelectContent className="bg-gray-900 border-white/10">
+                      <SelectItem value="any-pet">Any preference</SelectItem>
+                      <SelectItem value="Love them">Love them</SelectItem>
+                      <SelectItem value="Okay">Okay</SelectItem>
+                      <SelectItem value="Allergic">Allergic</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
@@ -312,12 +359,6 @@ const Browse = () => {
                     onClick={resetFilters}
                   >
                     Reset
-                  </Button>
-                  <Button
-                    className="flex-1 neon-button"
-                    onClick={applyFilters}
-                  >
-                    Apply Filters
                   </Button>
                 </div>
               </div>
@@ -332,8 +373,12 @@ const Browse = () => {
                 onClick={toggleFilters}
               >
                 <Filter className="h-5 w-5" /> 
-                Show Filters
+                Show Filters ({filteredRoommates.length} results)
               </Button>
+            </div>
+            
+            <div className="mb-4 text-white/70">
+              Showing {filteredRoommates.length} of {ROOMMATES.length} roommates
             </div>
             
             <div className="space-y-6">
