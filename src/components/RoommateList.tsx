@@ -35,7 +35,7 @@ const RoommateList: React.FC<RoommateListProps> = ({
 }) => {
   return (
     <div className="md:w-3/4">
-      <div className="mb-4 text-white/70">
+      <div className="mb-4 text-contrast-light">
         Showing {roommates.length} of {totalRoommates} roommates
       </div>
       

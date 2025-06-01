@@ -35,32 +35,32 @@ const Navbar = () => {
         </Link>
         
         <div className="hidden md:flex items-center gap-2 lg:gap-6">
-          <Link to="/" className="text-gray-700 hover:text-coral transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
+          <Link to="/" className="text-readable hover:text-coral transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
             Home
           </Link>
-          <Link to="/browse" className="text-gray-700 hover:text-teal transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
+          <Link to="/browse" className="text-readable hover:text-teal transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
             Browse
           </Link>
-          <Link to="/messages" className="text-gray-700 hover:text-sky transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
+          <Link to="/messages" className="text-readable hover:text-sky transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
             Messages
           </Link>
-          <Link to="/login" className="text-gray-700 hover:text-mint transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
+          <Link to="/login" className="text-readable hover:text-mint transition-colors text-sm lg:text-base whitespace-nowrap px-2 font-medium">
             Login
           </Link>
         </div>
         
         <div className="flex md:hidden items-center gap-3 sm:gap-4">
           <Link to="/" aria-label="Home" className="p-2 rounded-lg hover:bg-white/20 transition-colors">
-            <Home className="w-5 h-5 text-gray-700 hover:text-coral transition-colors" />
+            <Home className="w-5 h-5 text-readable hover:text-coral transition-colors" />
           </Link>
           <Link to="/browse" aria-label="Browse" className="p-2 rounded-lg hover:bg-white/20 transition-colors">
-            <Search className="w-5 h-5 text-gray-700 hover:text-teal transition-colors" />
+            <Search className="w-5 h-5 text-readable hover:text-teal transition-colors" />
           </Link>
           <Link to="/messages" aria-label="Messages" className="p-2 rounded-lg hover:bg-white/20 transition-colors">
-            <MessageSquare className="w-5 h-5 text-gray-700 hover:text-sky transition-colors" />
+            <MessageSquare className="w-5 h-5 text-readable hover:text-sky transition-colors" />
           </Link>
           <Link to="/login" aria-label="Profile" className="p-2 rounded-lg hover:bg-white/20 transition-colors">
-            <User className="w-5 h-5 text-gray-700 hover:text-mint transition-colors" />
+            <User className="w-5 h-5 text-readable hover:text-mint transition-colors" />
           </Link>
         </div>
       </div>

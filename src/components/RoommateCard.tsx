@@ -41,45 +41,45 @@ const RoommateCard: React.FC<RoommateCardProps> = ({ roommate, onViewProfile }) 
               {roommate.compatibility}%
             </div>
           </div>
-          <p className="mt-3 sm:mt-4 text-center text-xs sm:text-sm text-gray-700 font-medium">Compatibility</p>
+          <p className="mt-3 sm:mt-4 text-center text-xs sm:text-sm text-readable-secondary font-medium">Compatibility</p>
         </div>
         
         <div className="lg:w-3/4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3 sm:mb-4">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-800">{roommate.name}, {roommate.age}</h3>
+            <h3 className="text-lg sm:text-xl md:text-2xl font-semibold text-readable">{roommate.name}, {roommate.age}</h3>
             <div className="flex flex-wrap gap-2 mt-2 sm:mt-0">
               <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-sky/20 text-sky border border-sky/30">
                 {roommate.gender}
               </span>
-              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-mint/20 text-gray-700 border border-mint/30">
+              <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-mint/20 text-readable-secondary border border-mint/30">
                 Budget: ₹{roommate.budget}
               </span>
             </div>
           </div>
           
-          <div className="mb-3 flex items-center text-gray-600 text-sm">
+          <div className="mb-3 flex items-center text-readable-secondary text-sm">
             <MapPin className="h-4 w-4 mr-2 text-coral" />
             {roommate.location}
           </div>
           
-          <div className="mb-3 flex items-center text-gray-600 text-sm">
+          <div className="mb-3 flex items-center text-readable-secondary text-sm">
             <User className="h-4 w-4 mr-2 text-teal" />
             {roommate.occupation}
           </div>
           
-          <p className="mb-4 text-gray-700 text-sm sm:text-base leading-relaxed">{roommate.bio}</p>
+          <p className="mb-4 text-readable text-sm sm:text-base leading-relaxed">{roommate.bio}</p>
           
           <div className="flex flex-wrap gap-2 mb-4">
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-coral/20 text-gray-700 border border-coral/30">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-coral/20 text-readable-secondary border border-coral/30">
               🚬 {roommate.smoking}
             </span>
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-peach/30 text-gray-700 border border-sunset/30">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-peach/30 text-readable-secondary border border-sunset/30">
               🍲 {roommate.foodType}
             </span>
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-lavender/20 text-gray-700 border border-lavender/30">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-lavender/20 text-readable-secondary border border-lavender/30">
               🎉 {roommate.partyPreference}
             </span>
-            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-lime/20 text-gray-700 border border-lime/30">
+            <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-lime/20 text-readable-secondary border border-lime/30">
               🐶 {roommate.petPreference}
             </span>
           </div>

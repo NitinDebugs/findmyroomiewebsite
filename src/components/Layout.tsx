@@ -14,7 +14,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         {children}
       </main>
       <footer className="mt-auto border-t border-white/10 py-3 sm:py-4 md:py-6">
-        <div className="container mx-auto px-2 sm:px-4 text-center text-white/60 text-xs sm:text-sm md:text-base">
+        <div className="container mx-auto px-2 sm:px-4 text-center text-contrast-light text-xs sm:text-sm md:text-base">
           <p>© {new Date().getFullYear()} FindMyRoomie. All rights reserved.</p>
         </div>
       </footer>
