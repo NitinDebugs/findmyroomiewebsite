@@ -36,24 +36,18 @@ const Earth3D = () => {
             }
           }
           
-          @keyframes neonGlow {
+          @keyframes softGlow {
             0%, 100% {
               text-shadow: 
-                0 0 5px #fef08a,
                 0 0 10px #fef08a,
-                0 0 15px #facc15,
                 0 0 20px #facc15,
-                0 0 35px #eab308,
-                0 0 40px #eab308;
+                0 0 30px #eab308;
             }
             50% {
               text-shadow: 
-                0 0 2px #fef08a,
-                0 0 5px #fef08a,
-                0 0 8px #facc15,
-                0 0 12px #facc15,
-                0 0 18px #eab308,
-                0 0 22px #eab308;
+                0 0 15px #fef08a,
+                0 0 25px #facc15,
+                0 0 35px #eab308;
             }
           }
         `}
@@ -61,16 +55,14 @@ const Earth3D = () => {
       <h1 
         className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-center max-w-full break-words"
         style={{
-          background: 'linear-gradient(90deg, #fef3c7, #fef08a, #facc15, #eab308)',
-          backgroundSize: '400% 100%',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          animation: 'rotate 8s linear infinite, neonGlow 2s ease-in-out infinite',
-          filter: 'brightness(1.2)'
+          color: '#fef08a',
+          animation: 'softGlow 3s ease-in-out infinite',
+          fontWeight: '700',
+          letterSpacing: '1px'
         }}
       >
         {text}
-        <span className="animate-pulse" style={{ color: '#fef08a', textShadow: '0 0 10px #facc15' }}>|</span>
+        <span className="animate-pulse" style={{ color: '#fef08a' }}>|</span>
       </h1>
     </div>
   );
